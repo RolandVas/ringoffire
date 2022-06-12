@@ -6,6 +6,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+
+   
+
     img {
         height: 100vh;
     }
@@ -21,7 +25,11 @@
 
     img {
         width: 30vw;
-        height: auto;
+        height: 20%;
+
+        @media (max-width: 960px) {
+            width: 350px;
+        }
 
         &:hover {
             cursor: pointer;

@@ -4,6 +4,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
+import { changeToData } from 'rxfire/database';
+import { GameOverComponent } from '../game-over/game-over.component';
 
 
 @Component({
@@ -14,6 +17,8 @@ import { ActivatedRoute } from '@angular/router';
 export class GameComponent implements OnInit {
   game: Game;
   gameId: string;
+  playerId: number;
+  gameOver = false;
 
   constructor(private router: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog) { }
 
@@ -47,7 +52,9 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (this.game.stack.length == 0) {
+      const dialogRef = this.dialog.open(GameOverComponent);
+    } else if (!this.game.pickCardAnimation && this.game.players.length > 0) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
 
@@ -84,6 +91,19 @@ export class GameComponent implements OnInit {
       .doc(this.gameId)
       .update(this.game.toJson())
 
+  }
+
+
+  editPlayer(playerId: number) {
+    console.log('player number: ', playerId)
+    playerId = this.playerId;
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+
+    dialogRef.afterClosed().subscribe(change => {
+      if (change == 'DELETE') {
+        this.game.players.splice(playerId, 1)
+      }
+      });
   }
 
 }

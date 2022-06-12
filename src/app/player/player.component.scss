@@ -1,13 +1,28 @@
 .player {
     display: flex;
     align-items: center;
-    width: 300px;
+    width: 250px;
     background-color: rgb(255, 230, 184);
-    border-top-left-radius: 70px;
-    border-bottom-left-radius: 70px;
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 70px;
+    padding: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 600px) {
+        width: 100px;
+    }
+
     span {
         font-size: 24px;
         margin-left: 16px;
+
+        @media (max-width: 600px) {
+            font-size: 16px;
+            margin-left: 0px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
     img {
         height: 100px;
