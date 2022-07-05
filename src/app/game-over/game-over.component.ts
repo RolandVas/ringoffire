@@ -14,6 +14,9 @@ export class GameOverComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * If game is over close GameOver dialog and go to start side
+   */
   newGame() {
     this.router.navigateByUrl('/');
     this.dialogRef.close();

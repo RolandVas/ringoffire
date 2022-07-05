@@ -2,9 +2,6 @@
 <app-player (click)="editPlayer(i)" [name]="player" [playerActive]="i == game.currantPlayer" *ngFor="let player of game.players; let i = index;" 
 [ngStyle]="{'top.px': 10 + (i * 50)}" class="player-position"></app-player>
 
-<div *ngIf="gameOver">
-<h1>Game Over</h1>
-</div>
 
 <div *ngIf="!gameOver" class="field">
 
@@ -24,10 +21,8 @@
 
 </div>
 
-
 <button mat-fab color="primary" class="btn-add" (click)="openDialog()">
     <mat-icon>add</mat-icon>
-  </button>
-
+</button>
 
 <app-game-description [card]="game.currentCard" class="pin-bottom"></app-game-description>

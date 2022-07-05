@@ -10,12 +10,14 @@ import { Game } from 'src/models/game';
 })
 export class StartScreenComponent implements OnInit {
 
-  constructor(private firestore: AngularFirestore, private router: Router) { } /* wenn man andere Seiten einbinden muss man einschreiben */
+  constructor(private firestore: AngularFirestore, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-/* open game */
+  /**
+   * Open new game with different id in URL
+   */
   newGame() {
     let game = new Game();
     this.firestore

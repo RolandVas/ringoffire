@@ -40,11 +40,8 @@ export class GameComponent implements OnInit {
         this.game.stack = game.stack;
         this.game.pickCardAnimation = game.pickCardAnimation;
         this.game.currentCard = game.currentCard;
-
       });
-
-    })
-    
+    }) 
   }
 
   newGame() {
@@ -52,13 +49,13 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
+    /* if there are no more cards open game-over Component */
     if (this.game.stack.length == 0) {
-      const dialogRef = this.dialog.open(GameOverComponent);
+      this.dialog.open(GameOverComponent);
+    /* if player is add and card animation don't run -> you can pick a card*/
     } else if (!this.game.pickCardAnimation && this.game.players.length > 0) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
-
-      console.log(this.game.currentCard)
       
       this.game.currantPlayer++;
       this.game.currantPlayer = this.game.currantPlayer % this.game.players.length;
@@ -90,12 +87,10 @@ export class GameComponent implements OnInit {
       .collection('games')
       .doc(this.gameId)
       .update(this.game.toJson())
-
   }
 
 
   editPlayer(playerId: number) {
-    console.log('player number: ', playerId)
     playerId = this.playerId;
     const dialogRef = this.dialog.open(EditPlayerComponent);
 

@@ -6,6 +6,10 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
   styleUrls: ['./game-description.component.scss']
 })
 export class GameDescriptionComponent implements OnInit, OnChanges {
+
+  /**
+   * Description for all cards
+   */
   cardAction = [
     { title: 'Waterfall', description: 'Everyone has to start drinking at the same time. As soon as player 1 stops drinking, player 2 may stop drinking. Player 3 may stop as soon as player 2 stops drinking, and so on.' },
     { title: 'You', description: 'You decide who drinks' },
@@ -31,6 +35,7 @@ export class GameDescriptionComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
   }
+
 
   ngOnChanges(): void {
     if (this.card) {
